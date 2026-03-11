@@ -1,2 +1,166 @@
-/* ZooStudy Custom Styles */
-/* TODO: Add custom styles here */
+:root{
+    --zoo-dark-green:#042E1F;
+    --zoo-accent-cream:#efe6c8;
+    --zoo-earthly-brown:#3D2722;
+    --white:#faf1ee;
+    --zoo-light-brown:#b8a29e;
+    --zoo-font-main:'Roboto Condensed';
+
+}
+
+body {
+    background-color:#F0E7E6;
+    font-family: var(--zoo-font-main);
+    color: var(--zoo-earthly-brown)
+  
+
+}
+
+.custom-navbar {
+    background-color:var(--zoo-dark-green);
+    color: var(--zoo-earthly-brown);
+    font-family:var(--zoo-font-main);
+    border-bottom: 2px solid var(--zoo-light-brown)
+}
+
+.custom-navbar .nav-link, .custom-navbar .navbar-brand {
+    color: var(--zoo-light-brown);
+}
+.custom-navbar .nav-link:hover {
+    color: var(--zoo-accent-cream);
+    font-family:var(--zoo-font-main);
+    text-decoration: underline;
+}
+.registeration-page{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh; 
+    background-color:transparent ;
+    padding: 40px 20px;
+}
+.signup-section{
+    background-color: rgba(167, 123, 156, 0.45);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    min-height: 80vh;
+    
+}
+.welcome-message{
+    border: 2px; color: var(--zoo-earthly-brown);
+    background-color: #dab3b3;
+     padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 4px 4px 0px var(--zoo-earthly-brown);
+}
+.message-box{
+    background-color: var(--zoo-accent-cream);
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    font-style:normal;
+    font-family: var(--zoo-font-main);
+    color: var(--zoo-earthly-brown);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.welcome-message h1{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #2B0606;
+    margin: 0;
+    font-size: 1.8rem;
+}
+/* add 3d field for this too*/
+.field-container {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.field-label {
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:var(--zoo-dark-green);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+.field-container input {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid var(--zoo-earthly-brown);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--white);
+    color: var(--zoo-earthly-brown);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.sign-up{
+    margin-top: auto;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--zoo-light-brown);
+    color: var(--zoo-dark-green);
+    border: 2px solid var(--zoo-dark-green);
+    font-family: var(--zoo-font-main);
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.sign-up:hover{
+    background-color: var(--zoo-accent-cream);
+    box-shadow: 4px 4px 0px var(--zoo-dark-green);
+    transform: translate(-2px, -2px);
+}
+
+.register-footer-login{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.field-container input{
+    width: 100%;
+    padding: 12px;
+    background-color: #faf1ee;
+    box-shadow: 4px 4px 0px;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 1rem;
+}
+.field-label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #3D2722;
+}
+.sign-up{
+    width: 100%;
+    padding: 15px;
+    background-color: #b8a29e;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+}
+/*
+.registeration-page {
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                url("/static/zoo_app/images/backhround.jpg"); 
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+}*/
