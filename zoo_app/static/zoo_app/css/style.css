@@ -73,7 +73,7 @@ body {
     margin: 0;
     font-size: 1.8rem;
 }
-/* add 3d field for this too*/
+
 .field-container {
     margin-bottom: 25px;
     display: flex;
@@ -149,18 +149,3 @@ body {
     border: 3px solid #000;
     box-shadow: 4px 4px 0px #000;
 }
-/*
-.registeration-page {
-    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
-                url("/static/zoo_app/images/backhround.jpg"); 
-    
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 0;
-}*/
