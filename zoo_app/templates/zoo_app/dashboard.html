@@ -3,14 +3,65 @@
 
 {% block title %}ZooStudy - Dashboard{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'zoo_app/css/dashboard.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="dashboard-page">
     <div class="header-box">
         <h1>🐞🐋 Dashboard 🦊🦎</h1>
     </div>
-    <div class="dashboard-studysection">
+    <section class="dashboard-card-study-card">
+        <div class="dashboard-heading-row">
         <h3>Study Progress 🔋</h3>
-    </div>
+        <p>{{ progress_percentage }}%</p> 
+        </div>
+
+        <div class ="progress-bar">
+            <div class="progress-filling" style="width: {{ progress_percentage }}%;"></div>
+        </div>
+
+        <div class="study-stats-row">
+            <div class="mini-box-stats">
+                <h4>Hours studied today:</h4>
+                <p>{{ total_time_display }}</p>
+            </div>
+
+            <div class="mini-box-stats">
+                <h4>Weekly total</h4>
+                <p>{{ weekly_total_display }}</p>
+            </div>
+
+            <div class="mini-box-stats">
+                <h4>Daily average</h4>
+                <p>{{ daily_average_display }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-card-currency-card">
+        <h2>Currency Balance </h2>
+        <div class="currency-row">
+            <p>{{profile.currency}} coins / {{coin_goal}} 🪙</p>
+        </div>
+    </section>
+
+    <section class="dashboard-card-streak-card">
+        <h2>Study Streak</h2>
+        <div class="streak-row">
+            <p class="streak-count">{{profile.streak}}</p>
+            <p class="streak-note">{{streak_message}}</p>
+        </div>
+    </section>
+
+    <section class="dashboard-card nav-card">
+        <div class="dashboard-button-row">
+            <a href="{% url 'zoo_app:study_hub' %}" class="dashboard-nav-btn">Study hub</a>
+            <a href="{% url 'zoo_app:zoo' %}" class="dashboard-nav-btn">Zoo</a>
+            <a href="{% url 'zoo_app:shop' %}" class="dashboard-nav-btn">Shop</a>
+        </div>
+    </section>
 
 </div>
 {% endblock %}

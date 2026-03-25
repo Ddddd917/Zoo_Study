@@ -140,7 +140,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: var(--shadow-large);
+    gap: var(--space-lg);
     width: 100%;
     margin-top: var(--space-lg);
     flex-wrap: wrap;

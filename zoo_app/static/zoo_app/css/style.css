@@ -11,7 +11,7 @@
 body {
     background-color:#F0E7E6;
     font-family: var(--zoo-font-main);
-    color: var(--zoo-earthly-brown)
+    color: var(--zoo-earthly-brown);
   
 
 }
@@ -20,7 +20,7 @@ body {
     background-color:var(--zoo-dark-green);
     color: var(--zoo-earthly-brown);
     font-family:var(--zoo-font-main);
-    border-bottom: 2px solid var(--zoo-light-brown)
+    border-bottom: 2px solid var(--zoo-light-brown);
 }
 
 .custom-navbar .nav-link, .custom-navbar .navbar-brand {
@@ -50,9 +50,10 @@ body {
     
 }
 .welcome-message{
-    border: 2px; color: var(--zoo-earthly-brown);
+    border: 2px;
+    color: var(--zoo-earthly-brown);
     background-color: #dab3b3;
-     padding: 20px;
+    padding: 20px;
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 4px 4px 0px var(--zoo-earthly-brown);
@@ -128,7 +129,7 @@ body {
     width: 100%;
     padding: 12px;
     background-color: #faf1ee;
-    box-shadow: 4px 4px 0px;
+    box-shadow: 4px 4px 0px #000;
     margin-bottom: 20px;
     display: block;
     font-size: 1rem;
