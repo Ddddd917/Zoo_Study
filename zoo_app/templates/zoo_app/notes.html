@@ -3,11 +3,13 @@
 
 {% block title %}ZooStudy - Notes & Resources{% endblock %}
 
-{% block extra_css %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'zoo_app/css/notes.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="notes-page">
-    <h1 class="mb-2">📝 Notes & Resources</h1>
+    <h1 class="mb-2">Notes & Resources</h1>
     <p class="text-muted mb-4">Organise your notes and links by task.</p>
 
     {% if tasks %}
@@ -34,7 +36,7 @@
                     <p class="text-muted resource-empty">No notes yet for this task.</p>
                 {% endif %}
             </div>
-            <!-- Add note form (hidden by default via .add-note-form CSS) -->
+
             <div class="add-note-form" id="form-{{ task.id }}">
                 <form method="post">
                     {% csrf_token %}
@@ -71,5 +73,3 @@
     {% endif %}
 </div>
 {% endblock %}
-
-{% block extra_js %}{% endblock %}

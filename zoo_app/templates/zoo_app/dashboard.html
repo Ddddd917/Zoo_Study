@@ -3,67 +3,65 @@
 
 {% block title %}ZooStudy - Dashboard{% endblock %}
 
-{% block extra_css %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'zoo_app/css/dashboard.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="dashboard-page">
-    <div class="header-box mb-4">
+    <div class="header-box">
         <h1>🐞🐋 Dashboard 🦊🦎</h1>
-        <p class="text-muted">Welcome back, <strong>{{ request.user.username }}</strong>!</p>
     </div>
+    <section class="dashboard-card-study-card">
+        <div class="dashboard-heading-row">
+        <h3>Study Progress 🔋</h3>
+        <p>{{ progress_percentage }}%</p>
+        </div>
 
-    <!-- Stats Row -->
-    <div class="row g-3 mb-4">
-        <div class="col-6 col-md-3">
-            <div class="stat-card">
-                <div class="stat-value">{{ hours }}h {{ minutes }}m</div>
-                <div class="stat-label">Total Study Time</div>
-            </div>
+        <div class ="progress-bar">
+            <div class="progress-filling" style="width: {{ progress_percentage }}%;"></div>
         </div>
-        <div class="col-6 col-md-3">
-            <div class="stat-card">
-                <div class="stat-value">{{ profile.currency }}</div>
-                <div class="stat-label">🪙 Coins</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="stat-card">
-                <div class="stat-value">{{ profile.streak }}</div>
-                <div class="stat-label">🔥 Day Streak</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="stat-card">
-                <div class="stat-value">{{ profile.zoo_animal_count }}</div>
-                <div class="stat-label">🐾 Animals</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Quick Links -->
-    <div class="d-flex gap-3 flex-wrap mb-4">
-        <a href="{% url 'zoo_app:study_hub' %}" class="sign-up quick-link">Start Studying</a>
-        <a href="{% url 'zoo_app:shop' %}" class="sign-up quick-link">Visit Shop</a>
-        <a href="{% url 'zoo_app:zoo' %}" class="sign-up quick-link">My Zoo</a>
-    </div>
+        <div class="study-stats-row">
+            <div class="mini-box-stats">
+                <h4>Hours studied today:</h4>
+                <p>{{ total_time_display }}</p>
+            </div>
 
-    <!-- Upcoming Tasks -->
-    <h2 class="section-title">📋 Upcoming Tasks</h2>
-    {% if tasks %}
-        {% for task in tasks %}
-        <div class="task-item {% if task.is_overdue %}overdue{% endif %}">
-            <span>{{ task.title }}</span>
-            <span>
-                {% if task.is_overdue %}
-                    <span class="badge-overdue">Overdue</span>
-                {% else %}
-                    <span class="badge-due">{{ task.time_remaining_display }}</span>
-                {% endif %}
-            </span>
+            <div class="mini-box-stats">
+                <h4>Weekly total</h4>
+                <p>{{ weekly_total_display }}</p>
+            </div>
+
+            <div class="mini-box-stats">
+                <h4>Daily average</h4>
+                <p>{{ daily_average_display }}</p>
+            </div>
         </div>
-        {% endfor %}
-    {% else %}
-        <p class="text-muted">No pending tasks. <a href="{% url 'zoo_app:study_hub' %}">Add one in Study Hub!</a></p>
-    {% endif %}
+    </section>
+
+    <section class="dashboard-card-currency-card">
+        <h2>Currency Balance </h2>
+        <div class="currency-row">
+            <p>{{profile.currency}} coins / {{coin_goal}} 🪙</p>
+        </div>
+    </section>
+
+    <section class="dashboard-card-streak-card">
+        <h2>Study Streak</h2>
+        <div class="streak-row">
+            <p class="streak-count">{{profile.streak}}</p>
+            <p class="streak-note">{{streak_message}}</p>
+        </div>
+    </section>
+
+    <section class="dashboard-card nav-card">
+        <div class="dashboard-button-row">
+            <a href="{% url 'zoo_app:study_hub' %}" class="dashboard-nav-btn">Study hub</a>
+            <a href="{% url 'zoo_app:zoo' %}" class="dashboard-nav-btn">Zoo</a>
+            <a href="{% url 'zoo_app:shop' %}" class="dashboard-nav-btn">Shop</a>
+        </div>
+    </section>
+
 </div>
 {% endblock %}

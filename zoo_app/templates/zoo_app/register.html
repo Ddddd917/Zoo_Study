@@ -4,7 +4,7 @@
 {% block title %}ZooStudy - Register{% endblock %}
 
 {% block content %}
-<div class="registeration-page">
+<div class="registeration-page" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('{% static 'zoo_app/images/background.jpg' %}') repeat center center fixed; background-size: 50%; min-height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
     <div class="signup-section">
         <div class ="welcome-message">
             <h1>Welcome to Study Zoo </h1>
@@ -12,7 +12,16 @@
 
         <div class="message-box">
             <p>Study Zoo excited to have you! Fill your details and lets get learning!</p>
+
         </div>
+
+        {% if registered %}
+            <div class='success-message'>
+                <p>Welcome to Study Zoo!</p>
+                <a href="{% url 'zoo_app:dashboard' %}" class="sign-up">Go to Dashboard</a>
+            </div>
+
+        {% else %}
 
         {% if user_form.errors %}
             <div class="form-errors">
@@ -27,33 +36,39 @@
         <form method="post" action="{% url 'zoo_app:register' %}" class="sign-up-form">
             {% csrf_token %}
 
-            <div class="field-container">
-                <label class="field-label">Username</label>
-                <input type="text" name="username" placeholder="Choose a zoo name" value="{{ user_form.username.value|default:'' }}">
-            </div>
+             <div class="field-container">
+                    <label class="field-label">Full Name</label>
+                    <input type="text" name="full_name" placeholder="Your Name">
+                </div>
 
-            <div class="field-container">
-                <label class="field-label">Email</label>
-                <input type="email" name="email" placeholder="StudyZoo@AnimalsEmail.com" value="{{ user_form.email.value|default:'' }}">
-            </div>
+                <div class="field-container">
+                    <label class="field-label">Username</label>
+                    <input type="text" name="username" placeholder="Choose a zoo name">
+                </div>
 
-            <div class="field-container">
-                <label class="field-label">Password</label>
-                <input type="password" name="password">
-            </div>
+                <div class="field-container">
+                    <label class="field-label">Email</label>
+                    <input type="email" name="email" placeholder="StudyZoo@AnimalsEmail.com">
+                </div>
 
-            <div class="field-container">
-                <label class="field-label">Confirm Password</label>
-                <input type="password" name="confirm_password">
-            </div>
+                <div class="field-container">
+                    <label class="field-label">Password</label>
+                    <input type="password" name="password">
+                </div>
 
-            <button type="submit" class="sign-up">Sign up</button>
-        </form>
+                <div class="field-container">
+                    <label class="field-label">Confirm Password</label>
+                    <input type="password" name="confirm_password">
+                </div>
+
+                <button type="submit" class="sign-up">Sign up</button>
+            </form>
+
 
         <div class="register-footer-login">
             <p>Already a Study Zoo member? <a href="{% url 'zoo_app:login' %}">Log in</a></p>
         </div>
-
+        {% endif %}
     </div>
 
 </div>

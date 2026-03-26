@@ -3,51 +3,54 @@
 
 {% block title %}ZooStudy - My Zoo{% endblock %}
 
-{% block extra_css %}{% endblock %}
+{% block extra_css %}
+   <link rel="stylesheet" href="{% static 'zoo_app/css/zoo.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="zoo-page">
-    <h1 class="mb-2">🐾 My Zoo</h1>
-    <p class="text-muted mb-4">
-        You own <strong>{{ my_animals|length }}</strong> animal{{ my_animals|length|pluralize }}.
-        <a href="{% url 'zoo_app:shop' %}">Visit shop</a> to add more!
-    </p>
+    <div class="balance-card">
+        <div class="balance-label">My balance</div>
+        <div class="balance-amount">{{ profile.currency }} 💲💰</div>
+    </div>
 
-    {% if my_animals %}
-        {% for habitat in habitats %}
-        <div class="habitat-section habitat-{{ habitat.name }}">
-            <div class="habitat-header">{{ habitat.emoji }} {{ habitat.name|title }} Habitat</div>
-            <div class="habitat-body">
-                {% if habitat.animals %}
-                    <div class="row g-3">
+    <section class="zoo-section">
+        <h2 class="section-title">My Zoo</h2>
+
+        <div class="categories-grid">
+            {% for habitat in habitats %}
+                <div class="category">
+                    <h3 class="category-title">{{ habitat.emoji }} {{ habitat.name|title }} Animals</h3>
+
+                    <div class="animal-list">
                         {% for animal in habitat.animals %}
-                        <div class="col-6 col-md-3">
-                            <div class="animal-card">
-                                <div class="animal-img-zoo">
-                                    {% if animal.image %}
-                                        <img src="{{ animal.image.url }}" alt="{{ animal.name }}">
-                                    {% else %}
-                                        🐾
-                                    {% endif %}
-                                </div>
-                                <div class="animal-name-zoo">{{ animal.name }}</div>
+                            <div class="animal-item">
+                                {% if animal.image %}
+                                    <img src="{{ animal.image.url }}" alt="{{ animal.name }}" class="animal-icon-img">
+                                {% else %}
+                                    <div class="animal-emoji">
+                                        {% if animal.category == 'desert' %}🐪
+                                        {% elif animal.category == 'aquatic' %}🐠
+                                        {% elif animal.category == 'forest' %}🦊
+                                        {% elif animal.category == 'polar' %}🐧
+                                        {% else %}🐾
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                                <span class="animal-name">{{ animal.name }}</span>
                             </div>
-                        </div>
+                        {% empty %}
+                            <div class="empty-message">No animals yet</div>
                         {% endfor %}
                     </div>
-                {% else %}
-                    <p class="empty-habitat">No animals in this habitat yet.</p>
-                {% endif %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    {% else %}
-        <div class="text-center py-5">
-            <p class="empty-icon">🏜️</p>
-            <h3>Your zoo is empty!</h3>
-            <p class="text-muted">Study to earn coins (10/min), then visit the shop to buy your first animal.</p>
-            <a href="{% url 'zoo_app:shop' %}" class="sign-up empty-action-link">Visit Shop</a>
-        </div>
-    {% endif %}
+    </section>
+
+    <div id="zoo-buttons-container" class="zoo-buttons">
+    <a href="{% url 'zoo_app:dashboard' %}" class="zoo-nav-btn">Back to Dashboard</a>
+    <a href="{% url 'zoo_app:shop' %}" class="zoo-nav-btn">Go to Animal Shop</a>
+</div>
 </div>
 {% endblock %}

@@ -97,6 +97,19 @@ def dashboard(request):
     else:
         progress_percentage = 0
 
+    # Coin goal: next animal the user can't yet afford
+    owned_ids = UserZoo.objects.filter(user=request.user).values_list('animal_id', flat=True)
+    next_animal = Animal.objects.exclude(id__in=owned_ids).order_by('cost').first()
+    coin_goal = next_animal.cost if next_animal else 0
+
+    # Streak message
+    if profile.streak == 0:
+        streak_message = "Start studying to build your streak!"
+    elif profile.streak == 1:
+        streak_message = "1 day! Keep it going!"
+    else:
+        streak_message = f"{profile.streak} days in a row! \U0001f525"
+
     return render(request, 'zoo_app/dashboard.html', {
         'profile': profile,
         'hours': hours,
@@ -106,6 +119,8 @@ def dashboard(request):
         'weekly_total_display': weekly_total_display,
         'daily_average_display': daily_average_display,
         'progress_percentage': progress_percentage,
+        'coin_goal': coin_goal,
+        'streak_message': streak_message,
     })
 
 
@@ -127,9 +142,12 @@ def zoo(request):
         animals_in = [a for a in my_animals if a.category == name]
         habitats.append({'name': name, 'emoji': emoji, 'animals': animals_in})
 
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+
     return render(request, 'zoo_app/zoo.html', {
         'my_animals': my_animals,
         'habitats': habitats,
+        'profile': profile,
     })
 
 

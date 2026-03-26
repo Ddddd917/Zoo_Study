@@ -5,13 +5,13 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'zoo_app/css/home.css' %}">
 {% endblock %}
-    
+
 
 {% block content %}
 <div class="home-box">
     <header class="zoo-header">
         <h1 class="header-title-home">Study Zoo</h1>
-    </header>
+    </header>no
 
     <section class="Welcome-section">
         <div class="Welcome-message">
@@ -23,7 +23,7 @@
     </section>
     <main class="main-study-area">
         <div class="button-group">
-            <a href="{% url 'zoo_app:login' %}"class="sign-up">SIGN IN</a>
+            <a href="{% url 'zoo_app:login' %}" class="sign-up">SIGN IN</a>
             <a href="{% url 'zoo_app:register' %}" class="sign-up">SIGN UP</a>
         </div>
         <div class="goated-moscat-cat" >
