@@ -7,7 +7,7 @@ from datetime import timedelta
 from zoo_app.models import UserProfile, Task, StudySession, Animal, UserZoo, Resource
 
 
-# ======== MODEL TESTS ========
+# ======== MODEL TESTS (Abdul) ========
 
 class UserProfileModelTest(TestCase):
     def setUp(self):
