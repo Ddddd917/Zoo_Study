@@ -94,7 +94,7 @@ zoo_study_project/
 | Member | Role |
 |--------|------|
 | Jasper | Area A — Models & Database; Final code integration |
-| Abdul | Area B — User Auth & Testing |
+| Abdul | Area B — User Auth/Login & Testing |
 | Frank | Area C — Views & URLs |
 | Noor | Area D — Templates & CSS |
 | Bonnie | Area E — JavaScript/AJAX & Deployment |

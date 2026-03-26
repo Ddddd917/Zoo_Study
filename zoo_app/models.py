@@ -23,6 +23,65 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def today_study_minutes(self):
+        """Return total minutes studied today."""
+        today = timezone.now().date()
+        result = StudySession.objects.filter(user=self.user, date=today).aggregate(
+            total=Sum('duration_minutes')
+        )
+        return result['total'] or 0
+
+    def today_study_time_display(self):
+        """Return today's study time in hours and minutes, e.g., '2h 15m'."""
+        minutes = self.today_study_minutes()
+        hours = minutes // 60
+        mins = minutes % 60
+        if hours > 0:
+            return f"{hours}h {mins}m"
+        return f"{mins}m"
+
+    def weekly_study_minutes(self):
+        """Return total minutes studied in the last 7 days (including today)."""
+        today = timezone.now().date()
+        week_ago = today - timedelta(days=6)  # last 7 days including today
+        result = StudySession.objects.filter(
+            user=self.user,
+            date__gte=week_ago
+        ).aggregate(total=Sum('duration_minutes'))
+        return result['total'] or 0
+
+    @property
+    def weekly_study_display(self):
+        """Return last 7 days of study in hours and minutes."""
+        minutes = self.weekly_study_minutes()
+        hours = minutes // 60
+        mins = minutes % 60
+        if hours > 0:
+            return f"{hours}h {mins}m"
+        return f"{mins}m"
+
+    @property
+    def daily_average_minutes(self):
+        """Return average minutes studied per day (based on days with study sessions)."""
+        # Count distinct days user has studied
+        sessions = StudySession.objects.filter(user=self.user)
+        if not sessions.exists():
+            return 0
+
+        total_minutes = sessions.aggregate(total=Sum('duration_minutes'))['total'] or 0
+        days_with_sessions = sessions.values('date').distinct().count()
+        return total_minutes // days_with_sessions  # integer division
+
+    @property
+    def daily_average_display(self):
+        """Return daily average as hours and minutes."""
+        minutes = self.daily_average_minutes
+        hours = minutes // 60
+        mins = minutes % 60
+        if hours > 0:
+            return f"{hours}h {mins}m"
+        return f"{mins}m"
+
     def add_currency(self, minutes):
         """Convert study minutes to coins and add to balance."""
         earned = minutes * COINS_PER_MINUTE
@@ -85,65 +144,6 @@ class UserProfile(models.Model):
     def zoo_animal_count(self):
         """Get the number of animals this user owns."""
         return UserZoo.objects.filter(user=self.user).count()
-
-    def today_study_minutes(self):
-        """Return total minutes studied today."""
-        today = timezone.now().date()
-        result = StudySession.objects.filter(user=self.user, date=today).aggregate(
-            total=Sum('duration_minutes')
-        )
-        return result['total'] or 0
-
-    def today_study_time_display(self):
-        """Return today's study time in hours and minutes, e.g., '2h 15m'."""
-        minutes = self.today_study_minutes()
-        hours = minutes // 60
-        mins = minutes % 60
-        if hours > 0:
-            return f"{hours}h {mins}m"
-        return f"{mins}m"
-
-    def weekly_study_minutes(self):
-        """Return total minutes studied in the last 7 days (including today)."""
-        today = timezone.now().date()
-        week_ago = today - timedelta(days=6)  # last 7 days including today
-        result = StudySession.objects.filter(
-            user=self.user,
-            date__gte=week_ago
-        ).aggregate(total=Sum('duration_minutes'))
-        return result['total'] or 0
-
-    @property
-    def weekly_study_display(self):
-        """Return last 7 days of study in hours and minutes."""
-        minutes = self.weekly_study_minutes()
-        hours = minutes // 60
-        mins = minutes % 60
-        if hours > 0:
-            return f"{hours}h {mins}m"
-        return f"{mins}m"
-
-    @property
-    def daily_average_minutes(self):
-        """Return average minutes studied per day (based on days with study sessions)."""
-        # Count distinct days user has studied
-        sessions = StudySession.objects.filter(user=self.user)
-        if not sessions.exists():
-            return 0
-
-        total_minutes = sessions.aggregate(total=Sum('duration_minutes'))['total'] or 0
-        days_with_sessions = sessions.values('date').distinct().count()
-        return total_minutes // days_with_sessions  # integer division
-
-    @property
-    def daily_average_display(self):
-        """Return daily average as hours and minutes."""
-        minutes = self.daily_average_minutes
-        hours = minutes // 60
-        mins = minutes % 60
-        if hours > 0:
-            return f"{hours}h {mins}m"
-        return f"{mins}m"
 
 
 class Task(models.Model):
