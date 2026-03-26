@@ -1,0 +1,277 @@
+/* notes.css – forced override of Bootstrap with !important */
+
+:root {
+    --zoo-dark-green: #042E1F;
+    --zoo-accent-cream: #efe6c8;
+    --zoo-earthly-brown: #3D2722;
+    --white: #faf1ee;
+    --zoo-light-brown: #b8a29e;
+    --zoo-font-main: 'Roboto Condensed', sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --border-thick: 3px solid #000;
+    --shadow-small: 4px 4px 0px #000;
+    --shadow-medium: 6px 6px 0px #000;
+    --border-radius: 12px;
+    --transition-base: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--white) !important;
+    font-family: var(--zoo-font-main) !important;
+    color: var(--zoo-earthly-brown) !important;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ========== Main container ========== */
+.notes-page {
+    max-width: 1000px !important;
+    margin: var(--space-xl) auto !important;
+    padding: 0 var(--space-md) var(--space-xl) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+}
+
+/* Headings and text – override Bootstrap .text-muted */
+.notes-page h1 {
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 2.2rem !important;
+    color: var(--zoo-dark-green) !important;
+    margin: 0 0 var(--space-xs) 0 !important;
+}
+.notes-page .text-muted {
+    font-size: 1rem !important;
+    color: var(--zoo-light-brown) !important;
+    margin-bottom: var(--space-md) !important;
+}
+
+/* ========== Task section (one per task) ========== */
+.task-notes-section {
+    background-color: var(--zoo-accent-cream) !important;
+    border: var(--border-thick) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-small) !important;
+    transition: transform var(--transition-base) !important;
+}
+.task-notes-section:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--shadow-medium) !important;
+}
+
+.task-notes-header {
+    background-color: #AD7171 !important;
+    border-bottom: var(--border-thick) !important;
+    padding: var(--space-sm) var(--space-md) !important;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: var(--space-sm) !important;
+}
+.task-notes-header span {
+    font-family: Georgia, serif !important;
+    font-size: 1.4rem !important;
+    font-weight: bold !important;
+    color: #2E0707 !important;
+}
+.toggle-form-btn {
+    background-color: var(--zoo-earthly-brown) !important;
+    color: var(--white) !important;
+    border: var(--border-thick) !important;
+    border-radius: 30px !important;
+    padding: 0.2rem 0.8rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    font-family: var(--zoo-font-main) !important;
+}
+.toggle-form-btn:hover {
+    background-color: var(--zoo-accent-cream) !important;
+    color: var(--zoo-dark-green) !important;
+    transform: translate(-1px, -1px) !important;
+    box-shadow: var(--shadow-small) !important;
+}
+
+.task-notes-body {
+    padding: var(--space-md) !important;
+}
+
+/* ========== Resource cards ========== */
+.resource-card {
+    background-color: var(--white) !important;
+    border: 2px solid #000 !important;
+    border-radius: var(--border-radius) !important;
+    padding: var(--space-sm) !important;
+    margin-bottom: var(--space-sm) !important;
+}
+.resource-type-badge {
+    display: inline-block !important;
+    padding: 0.2rem 0.6rem !important;
+    border-radius: 20px !important;
+    background-color: var(--zoo-light-brown) !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 0.8rem !important;
+    margin-bottom: var(--space-xs) !important;
+}
+.badge-note {
+    background-color: #621151 !important;
+    color: white !important;
+}
+.badge-resource {
+    background-color: #2196f3 !important;
+    color: white !important;
+}
+.resource-card strong {
+    display: block !important;
+    font-size: 1rem !important;
+    margin: var(--space-xs) 0 !important;
+}
+.resource-content {
+    margin: var(--space-xs) 0 !important;
+    color: var(--zoo-earthly-brown) !important;
+}
+.resource-url {
+    display: inline-block !important;
+    color: var(--zoo-dark-green) !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    word-break: break-all !important;
+}
+.resource-url:hover {
+    text-decoration: underline !important;
+}
+.resource-date {
+    font-size: 0.75rem !important;
+    color: var(--zoo-light-brown) !important;
+    margin-top: var(--space-xs) !important;
+}
+.resource-empty {
+    color: var(--zoo-light-brown) !important;
+    font-style: italic !important;
+    text-align: center !important;
+    padding: var(--space-sm) !important;
+}
+
+/* ========== Add note form (hidden by default, shown via JS) ========== */
+.add-note-form {
+    margin-top: var(--space-md) !important;
+    border-top: 2px dashed var(--zoo-light-brown) !important;
+    padding: var(--space-md) !important;
+    display: none;
+}
+.add-note-form form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-sm) !important;
+}
+.add-note-form input,
+.add-note-form select,
+.add-note-form textarea {
+    width: 100% !important;
+    padding: var(--space-xs) !important;
+    border: 2px solid #000 !important;
+    font-family: var(--zoo-font-main) !important;
+    background-color: var(--white) !important;
+}
+.btn-add-note {
+    background-color: var(--zoo-earthly-brown) !important;
+    color: var(--white) !important;
+    border: var(--border-thick) !important;
+    border-radius: 30px !important;
+    padding: var(--space-xs) var(--space-md) !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    align-self: flex-start !important;
+    font-family: var(--zoo-font-main) !important;
+}
+.btn-add-note:hover {
+    background-color: var(--zoo-accent-cream) !important;
+    color: var(--zoo-dark-green) !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--shadow-small) !important;
+}
+
+/* ========== Empty state ========== */
+.text-center.py-5 {
+    text-align: center !important;
+    background-color: var(--zoo-accent-cream) !important;
+    border: var(--border-thick) !important;
+    border-radius: var(--border-radius) !important;
+    padding: var(--space-xl) !important;
+    box-shadow: var(--shadow-small) !important;
+}
+.empty-icon {
+    font-size: 3rem !important;
+    margin-bottom: var(--space-sm) !important;
+}
+.text-center.py-5 h3 {
+    font-family: Georgia, serif !important;
+    font-size: 1.5rem !important;
+    margin-bottom: var(--space-sm) !important;
+    color: var(--zoo-dark-green) !important;
+}
+.empty-action-link {
+    display: inline-block !important;
+    background-color: var(--zoo-earthly-brown) !important;
+    color: var(--white) !important;
+    text-decoration: none !important;
+    padding: var(--space-xs) var(--space-lg) !important;
+    border: var(--border-thick) !important;
+    border-radius: 30px !important;
+    font-weight: bold !important;
+    transition: all var(--transition-base) !important;
+    margin-top: var(--space-md) !important;
+}
+.empty-action-link:hover {
+    background-color: var(--zoo-accent-cream) !important;
+    color: var(--zoo-dark-green) !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--shadow-small) !important;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 700px) {
+    .notes-page {
+        padding: 0 var(--space-sm) var(--space-lg) !important;
+        margin: var(--space-lg) auto !important;
+    }
+    .task-notes-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        text-align: center !important;
+    }
+    .toggle-form-btn {
+        width: 100% !important;
+    }
+    .add-note-form .row {
+        flex-direction: column !important;
+    }
+    .add-note-form .col-md-6 {
+        width: 100% !important;
+    }
+    .btn-add-note {
+        width: 100% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .notes-page h1 {
+        font-size: 1.6rem !important;
+    }
+    .task-notes-header span {
+        font-size: 1.2rem !important;
+    }
+}

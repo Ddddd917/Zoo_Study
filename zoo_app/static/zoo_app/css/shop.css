@@ -23,7 +23,6 @@
 }
     
 
-
 * {
     box-sizing: border-box;
 }
@@ -36,7 +35,7 @@
     gap: var(--space-xl);
 }
 .balance-card {
-    background-color: var(#380C06);
+    background-color: var#380C06;
     border: var(--border-thick);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
