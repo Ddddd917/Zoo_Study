@@ -1,5 +1,6 @@
 // ZooStudy Main JavaScript
 // CSRF token and AJAX URLs are injected by base.html via window.ZOO_CONFIG
+console.log("JS loaded")
 
 $(document).ready(function () {
     initShop();
@@ -14,7 +15,7 @@ function initShop() {
     if (!$('.buy-button:not(.owned)').length) return;
 
     // Handle buy button click — POST to AJAX endpoint and update UI on success
-    $('.buy-button:not(.owned)').on('click', function () {
+    $(document).on('click', '.buy-button:not(.owned)', function () {
         const btn = $(this);
         const animalId = btn.data('animal-id');
 
